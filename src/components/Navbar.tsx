@@ -36,7 +36,7 @@ function NavbarContent() {
 
   return (
     <nav className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/5 flex flex-col">
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <SiteTitle />
         <div className="flex items-center gap-2 sm:gap-4">
           <button
@@ -67,7 +67,7 @@ function NavbarContent() {
 
       {/* Expandable Search Input */}
       <div
-        className={`w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden transition-all duration-300 ease-in-out ${isSearchOpen ? "max-h-24 pb-4 opacity-100" : "max-h-0 opacity-0"}`}
+        className={`w-full max-w-350 mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden transition-all duration-300 ease-in-out ${isSearchOpen ? "max-h-24 pb-4 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -101,7 +101,7 @@ export default function Navbar() {
   return (
     <Suspense
       fallback={
-        <nav className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/5 py-4 min-h-[73px]"></nav>
+        <nav className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/5 py-4 min-h-18.25"></nav>
       }
     >
       <NavbarContent />

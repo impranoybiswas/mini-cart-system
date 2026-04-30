@@ -28,7 +28,7 @@ export default function SidebarFilter({
       {/* Categories */}
       <section>
         <h3 className="text-base font-bold text-foreground mb-4">Categories</h3>
-        <ul className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide">
+        <ul className="flex lg:flex-col gap-2 flex-wrap pb-2 lg:pb-0 scrollbar-hide">
           <li>
             <button
               onClick={() => onSelectCategory("all")}
