@@ -5,6 +5,7 @@ import StoreProvider from "@/providers/StoreProvider";
 import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/CartDrawer";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,28 +41,37 @@ export const metadata: Metadata = {
   ],
 };
 
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
-        <StoreProvider>
-          <Navbar />
-          {children}
-          <CartDrawer />
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: "var(--background)",
-                color: "var(--foreground)",
-              },
-            }}
-          />
-        </StoreProvider>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-dvh flex flex-col">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <StoreProvider>
+            <Navbar />
+            <div className="flex-1 min-h-0 flex flex-col">{children}</div>
+            <Footer />
+            <CartDrawer />
+            <Toaster
+              position="bottom-right"
+              toastOptions={{
+                style: {
+                  background: "var(--background)",
+                  color: "var(--foreground)",
+                },
+              }}
+            />
+          </StoreProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import { Search, User, ShoppingCart } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { openCart } from "@/store/cartSlice";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const dispatch = useAppDispatch();
@@ -20,21 +21,16 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-4">
-          <button
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground transition-colors"
-            aria-label="Search"
-          >
+          <button className="btn-circular" aria-label="Search">
             <Search className="w-5 h-5" />
           </button>
-          <button
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground transition-colors"
-            aria-label="User Account"
-          >
+          <ThemeToggle />
+          <button className="btn-circular" aria-label="User Account">
             <User className="w-5 h-5" />
           </button>
           <button
             onClick={() => dispatch(openCart())}
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground transition-colors relative"
+            className="btn-circular relative"
             aria-label="Open Cart"
           >
             <ShoppingCart className="w-5 h-5" />

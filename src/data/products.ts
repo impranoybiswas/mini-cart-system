@@ -2,197 +2,208 @@ import { Product } from "@/types";
 
 export const productsTracker: Product[] = [
   {
-    id: "p1",
-    name: "Aesthetic Leather Backpack",
-    price: 149.99,
+    id: "M001",
+    name: "Samsung Galaxy S26 Ultra",
+    price: 179999,
     image:
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=600&h=600",
-    description: "Minimalist full-grain leather backpack for daily commuters.",
-  },
-  {
-    id: "p2",
-    name: "Ceramic Coffee Dripper",
-    price: 34.0,
-    image:
-      "https://images.unsplash.com/photo-1498603536246-15572faa67a6?auto=format&fit=crop&q=80&w=600&h=600",
-    description: "Pour-over coffee maker crafted from high-fired ceramic.",
-  },
-  {
-    id: "p3",
-    name: "Noise-Canceling Headphones",
-    price: 299.5,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=600&h=600",
-    description: "Premium over-ear headphones with active noise cancellation.",
-  },
-  {
-    id: "p4",
-    name: "Mechanical Keyboard",
-    price: 189.0,
-    image:
-      "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&q=80&w=600&h=600",
-    description: "Hot-swappable tactile mechanical wireless keyboard.",
-  },
-  {
-    id: "p5",
-    name: "Matte Black Water Bottle",
-    price: 45.0,
-    image:
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&q=80&w=600&h=600",
+      "https://placehold.co/600x600/000000/FFFFFF/png?text=Samsung+S26+Ultra",
     description:
-      "Vacuum insulated 32oz bottle that keeps water cold for 24 hours.",
+      "The ultimate flagship featuring the Snapdragon 8 Elite Gen 5.",
+    category: "mobiles",
+    quantity: 15,
   },
   {
-    id: "p6",
-    name: "Smart Desk Lamp",
-    price: 89.99,
+    id: "M002",
+    name: "iPhone 17 Pro Max",
+    price: 217499,
     image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+      "https://placehold.co/600x600/000000/FFFFFF/png?text=iPhone+17+Pro+Max",
+    description: "Apple's most powerful device with A19 chip.",
+    category: "mobiles",
+    quantity: 10,
   },
   {
-    id: "p7",
-    name: "Smart Desk Lamp",
-    price: 89.99,
+    id: "M003",
+    name: "Xiaomi Redmi Note 15 Pro+",
+    price: 46999,
     image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+      "https://placehold.co/600x600/000000/FFFFFF/png?text=Redmi+Note+15+Pro",
+    description: "Premium mid-range with 200MP camera.",
+    category: "mobiles",
+    quantity: 25,
+  },
+
+  // ----------- EXTRA 20 PRODUCTS -----------
+
+  {
+    id: "M007",
+    name: "Google Pixel 10 Pro",
+    price: 135000,
+    image: "https://placehold.co/600x600/png?text=Pixel+10+Pro",
+    description: "Best AI camera with Tensor G5 chip.",
+    category: "mobiles",
+    quantity: 12,
   },
   {
-    id: "p8",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "M008",
+    name: "Realme GT 7 Pro",
+    price: 58000,
+    image: "https://placehold.co/600x600/png?text=Realme+GT+7",
+    description: "Gaming-focused smartphone with extreme cooling.",
+    category: "mobiles",
+    quantity: 20,
   },
   {
-    id: "p9",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "S007",
+    name: "Huawei Watch GT 5",
+    price: 32000,
+    image: "https://placehold.co/600x600/png?text=Huawei+Watch",
+    description: "Premium smartwatch with 14-day battery.",
+    category: "smartwatches",
+    quantity: 18,
   },
   {
-    id: "p10",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "S008",
+    name: "Fire-Boltt Visionary",
+    price: 6000,
+    image: "https://placehold.co/600x600/png?text=FireBoltt",
+    description: "Affordable smartwatch with AMOLED display.",
+    category: "smartwatches",
+    quantity: 35,
   },
   {
-    id: "p11",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "A007",
+    name: "Samsung 25W Fast Charger",
+    price: 2000,
+    image: "https://placehold.co/600x600/png?text=Samsung+25W",
+    description: "Fast charging adapter for Samsung devices.",
+    category: "accessories",
+    quantity: 60,
   },
   {
-    id: "p12",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "A008",
+    name: "Xiaomi 20000mAh Power Bank",
+    price: 3500,
+    image: "https://placehold.co/600x600/png?text=Mi+Powerbank",
+    description: "High capacity power bank with fast charging.",
+    category: "accessories",
+    quantity: 45,
   },
   {
-    id: "p13",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "H007",
+    name: "Sony WF-1000XM6",
+    price: 25000,
+    image: "https://placehold.co/600x600/png?text=Sony+Earbuds",
+    description: "Top-tier ANC earbuds with premium sound.",
+    category: "headphones",
+    quantity: 15,
   },
   {
-    id: "p14",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "H008",
+    name: "Boat Rockerz 550",
+    price: 5000,
+    image: "https://placehold.co/600x600/png?text=Boat+550",
+    description: "Budget headphones with deep bass.",
+    category: "headphones",
+    quantity: 40,
   },
   {
-    id: "p15",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "SP07",
+    name: "Mi Portable Speaker",
+    price: 4500,
+    image: "https://placehold.co/600x600/png?text=Mi+Speaker",
+    description: "Compact speaker with powerful sound.",
+    category: "speakers",
+    quantity: 22,
   },
   {
-    id: "p16",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "SP08",
+    name: "Boat Stone 1200",
+    price: 8000,
+    image: "https://placehold.co/600x600/png?text=Boat+Stone",
+    description: "Rugged speaker with 14W output.",
+    category: "speakers",
+    quantity: 30,
   },
   {
-    id: "p17",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "L001",
+    name: "MacBook Pro M4",
+    price: 280000,
+    image: "https://placehold.co/600x600/png?text=MacBook+M4",
+    description: "Powerful laptop with Apple M4 chip.",
+    category: "laptops",
+    quantity: 8,
   },
   {
-    id: "p18",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "L002",
+    name: "Dell XPS 15",
+    price: 210000,
+    image: "https://placehold.co/600x600/png?text=Dell+XPS",
+    description: "Premium ultrabook with OLED display.",
+    category: "laptops",
+    quantity: 10,
   },
   {
-    id: "p19",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "L003",
+    name: "HP Omen 16",
+    price: 180000,
+    image: "https://placehold.co/600x600/png?text=HP+Omen",
+    description: "High performance gaming laptop.",
+    category: "laptops",
+    quantity: 6,
   },
   {
-    id: "p20",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "T001",
+    name: "iPad Pro M4",
+    price: 150000,
+    image: "https://placehold.co/600x600/png?text=iPad+Pro",
+    description: "Powerful tablet with Liquid Retina display.",
+    category: "tablets",
+    quantity: 12,
   },
   {
-    id: "p21",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
+    id: "T002",
+    name: "Samsung Tab S10 Ultra",
+    price: 140000,
+    image: "https://placehold.co/600x600/png?text=Tab+S10",
+    description: "Large AMOLED tablet with S Pen.",
+    category: "tablets",
+    quantity: 9,
   },
   {
-    id: "p22",
-    name: "Smart Desk Lamp",
-    price: 89.99,
-    image:
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600&h=600",
-    description:
-      "Adjustable color temperature desk lamp with wireless charging base.",
-  }
+    id: "G001",
+    name: "PlayStation 6",
+    price: 90000,
+    image: "https://placehold.co/600x600/png?text=PS6",
+    description: "Next-gen gaming console.",
+    category: "gaming",
+    quantity: 7,
+  },
+  {
+    id: "G002",
+    name: "Xbox Series Z",
+    price: 85000,
+    image: "https://placehold.co/600x600/png?text=Xbox+Z",
+    description: "High performance gaming console.",
+    category: "gaming",
+    quantity: 7,
+  },
+  {
+    id: "C001",
+    name: "Canon EOS R8",
+    price: 160000,
+    image: "https://placehold.co/600x600/png?text=Canon+R8",
+    description: "Professional mirrorless camera.",
+    category: "camera",
+    quantity: 5,
+  },
+  {
+    id: "C002",
+    name: "Sony A7C II",
+    price: 190000,
+    image: "https://placehold.co/600x600/png?text=Sony+A7C",
+    description: "Compact full-frame camera.",
+    category: "camera",
+    quantity: 4,
+  },
 ];
