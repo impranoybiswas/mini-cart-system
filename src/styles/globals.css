@@ -32,42 +32,12 @@
   }
 }
 
-/* custom */
-.card {
-  @apply p-4 rounded-xl bg-foreground/2 border border-foreground/10 shadow w-full;
-}
 
-.card h2 {
-  @apply text-xl font-semibold text-center;
-}
-.card p {
-  @apply text-center text-foreground/60 text-sm mt-1 mb-6;
-}
 
 .btn {
-  @apply h-10 px-3 text-sm rounded-lg flex items-center justify-center cursor-pointer opacity-80 hover:opacity-100 transition-opacity duration-200 ease-in-out;
-}
-
-.btn-primary {
-  @apply bg-primary text-white;
-}
-
-.btn-secondary {
-  @apply bg-secondary text-white;
-}
-
-.btn-natural {
-  @apply bg-foreground/5 hover:bg-foreground/10 text-foreground;
+  @apply h-8 md:h-10 px-3 text-xs md:text-sm rounded-lg flex items-center justify-center cursor-pointer opacity-80 hover:opacity-100 transition-opacity duration-300 ease-in-out;
 }
 
 .btn-circular {
   @apply w-10 h-10 flex items-center justify-center rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground transition-all duration-300 ease-in-out cursor-pointer;
-}
-
-.input {
-  @apply w-full h-10 border border-foreground/10 py-2 px-3 rounded-lg bg-foreground/5 text-foreground placeholder:text-foreground/40 focus:ring-primary focus:ring-1 focus:outline-none transition-colors duration-200 ease-in-out;
-}
-
-.textarea {
-  @apply w-full border border-foreground/10 py-2 px-3 rounded-lg bg-foreground/5 text-foreground placeholder:text-foreground/40 focus:ring-primary focus:ring-1 focus:outline-none transition-colors duration-200 ease-in-out;
 }

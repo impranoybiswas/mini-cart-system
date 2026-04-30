@@ -62,7 +62,7 @@ export default function RootLayout({
             <Footer />
             <CartDrawer />
             <Toaster
-              position="bottom-right"
+              position="top-center"
               toastOptions={{
                 style: {
                   background: "var(--background)",

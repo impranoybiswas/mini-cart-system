@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingBag, Trash2, ArrowRight, AlertCircle } from "lucide-react";
+import { ShoppingBag, Trash2, ArrowRight, AlertCircle,  InfoIcon } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { removeFromCart, closeCart } from "@/store/cartSlice";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function Cart() {
     if (itemToDelete) {
       dispatch(removeFromCart(itemToDelete));
       toast.success("Item removed from cart", {
-        icon: "🗑️",
+        icon: <Trash2 className="w-4 h-4 text-red-600" />,
       });
       setItemToDelete(null);
     }
@@ -77,11 +77,12 @@ export default function Cart() {
                 className="group flex gap-4 p-3 bg-background border border-foreground/5 rounded-xl hover:border-foreground/10 transition-colors relative"
               >
                 <div className="w-16 h-16 rounded-lg overflow-hidden bg-foreground/5 shrink-0">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover"
-           
+                    width={64}
+                    height={64}
                   />
                 </div>
                 <div className="flex flex-col flex-1 py-0.5 min-w-0">
@@ -112,7 +113,12 @@ export default function Cart() {
             </div>
 
             <button className="w-full btn bg-primary text-white hover:opacity-90 h-12 rounded-xl flex items-center justify-center gap-2 group transition-all">
-              <span className="font-semibold">Checkout</span>
+              <span onClick={() => toast(<div className="flex gap-2">
+                <InfoIcon className="w-4 h-4" /> <p>
+                  Thanks for Shopping!!
+                  <br /> Checkout Not Implemented Yet!!
+                </p>
+                 </div>)} className="font-semibold">Checkout</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

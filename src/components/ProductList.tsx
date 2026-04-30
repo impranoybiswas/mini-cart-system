@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { productsTracker } from "@/data/products";
 import ProductCard from "./ProductCard";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
@@ -9,10 +10,16 @@ import SidebarFilter from "./SidebarFilter";
 const PRODUCTS_PER_PAGE = 12;
 
 export default function ProductList() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("q") || "";
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("featured");
+  const [stockFilter, setStockFilter] = useState<
+    "all" | "inStock" | "outOfStock"
+  >("all");
 
+  // collect all unique categories
   const categories = useMemo(() => {
     const caps = productsTracker.map((p) => p.category).filter(Boolean);
     return Array.from(new Set(caps));
@@ -46,8 +53,23 @@ export default function ProductList() {
       result.sort((a, b) => b.price - a.price);
     }
 
+    if (stockFilter === "inStock") {
+      result = result.filter((p) => p.quantity > 0);
+    } else if (stockFilter === "outOfStock") {
+      result = result.filter((p) => p.quantity === 0);
+    }
+
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      result = result.filter(
+        (p) =>
+          p.name.toLowerCase().includes(lowerQuery) ||
+          p.description.toLowerCase().includes(lowerQuery),
+      );
+    }
+
     return result;
-  }, [selectedCategory, priceRange, sortBy]);
+  }, [selectedCategory, priceRange, sortBy, stockFilter, searchQuery]);
 
   const totalPages = Math.ceil(
     filteredAndSortedProducts.length / PRODUCTS_PER_PAGE,
@@ -59,7 +81,7 @@ export default function ProductList() {
   );
 
   const getSectionTitle = () => {
-    if (selectedCategory === "all") return "Essential Gear";
+    if (selectedCategory === "all") return "Top Products";
     return selectedCategory;
   };
 
@@ -85,6 +107,11 @@ export default function ProductList() {
           setCurrentPage(1);
         }}
         maxPrice={maxPossiblePrice}
+        stockFilter={stockFilter}
+        onStockFilterChange={(filter: "all" | "inStock" | "outOfStock") => {
+          setStockFilter(filter);
+          setCurrentPage(1);
+        }}
       />
 
       {/* Main product area */}
@@ -92,12 +119,6 @@ export default function ProductList() {
         {/* Dynamic Header & Sort */}
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 pb-6 border-b border-foreground/5">
           <div className="max-w-2xl">
-            {selectedCategory === "all" && (
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-semibold tracking-wide uppercase mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-                Top Collection
-              </div>
-            )}
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-2 capitalize">
               {getSectionTitle()}
             </h1>
@@ -119,9 +140,24 @@ export default function ProductList() {
                 }}
                 className="appearance-none bg-transparent border-none py-2 pl-2 pr-8 text-sm font-semibold text-foreground cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-md"
               >
-                <option value="featured">Featured</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
+                <option
+                  value="featured"
+                  className="bg-background text-foreground"
+                >
+                  Featured
+                </option>
+                <option
+                  value="price-asc"
+                  className="bg-background text-foreground"
+                >
+                  Price: Low to High
+                </option>
+                <option
+                  value="price-desc"
+                  className="bg-background text-foreground"
+                >
+                  Price: High to Low
+                </option>
               </select>
               <ChevronDown className="w-4 h-4 text-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
@@ -130,7 +166,7 @@ export default function ProductList() {
 
         {/* Product Grid */}
         {currentProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 auto-rows-fr mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr mb-12">
             {currentProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -147,6 +183,7 @@ export default function ProductList() {
               onClick={() => {
                 setSelectedCategory("all");
                 setPriceRange([0, maxPossiblePrice]);
+                setStockFilter("all");
                 setCurrentPage(1);
               }}
               className="mt-6 px-6 py-2 bg-foreground text-background rounded-lg font-medium hover:bg-foreground/90 transition-colors"
