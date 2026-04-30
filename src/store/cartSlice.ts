@@ -4,11 +4,13 @@ import { Product } from "@/types";
 interface CartState {
   items: Product[];
   isHydrated: boolean;
+  isCartOpen: boolean;
 }
 
 const initialState: CartState = {
   items: [],
   isHydrated: false,
+  isCartOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -23,18 +25,19 @@ export const cartSlice = createSlice({
       if (!state.items.some((item) => item.id === action.payload.id)) {
         state.items.push(action.payload);
       }
-      if (typeof window !== "undefined") {
-        localStorage.setItem("mini-cart-data", JSON.stringify(state.items));
-      }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("mini-cart-data", JSON.stringify(state.items));
-      }
+    },
+    openCart: (state) => {
+      state.isCartOpen = true;
+    },
+    closeCart: (state) => {
+      state.isCartOpen = false;
     },
   },
 });
 
-export const { hydrateCart, addToCart, removeFromCart } = cartSlice.actions;
+export const { hydrateCart, addToCart, removeFromCart, openCart, closeCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;

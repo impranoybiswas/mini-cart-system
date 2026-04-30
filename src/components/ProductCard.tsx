@@ -4,6 +4,7 @@ import { ShoppingCart, Check } from "lucide-react";
 import { Product } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToCart } from "@/store/cartSlice";
+import toast from "react-hot-toast";
 
 export default function ProductCard({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
@@ -13,6 +14,9 @@ export default function ProductCard({ product }: { product: Product }) {
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
+    toast.success("Added to cart", {
+      icon: "✅",
+    });
   };
 
   return (
@@ -37,7 +41,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </p>
           <button
             onClick={handleAddToCart}
-            disabled={isInCart || !isHydrated}
+            disabled={isInCart}
             className={`btn relative overflow-hidden transition-all duration-300 ${
               isInCart
                 ? "bg-foreground/10 text-foreground cursor-default"

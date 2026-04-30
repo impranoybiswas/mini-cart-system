@@ -26,6 +26,13 @@ export default function StoreProvider({
       } else {
         store.dispatch(hydrateCart([]));
       }
+
+      store.subscribe(() => {
+        localStorage.setItem(
+          "mini-cart-data",
+          JSON.stringify(store.getState().cart.items),
+        );
+      });
     }
   }, []);
 
