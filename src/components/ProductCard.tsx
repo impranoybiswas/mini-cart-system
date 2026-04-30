@@ -46,17 +46,15 @@ export default function ProductCard({ product }: { product: Product }) {
             </div>
           )}
         </div>
-        <div className="w-full h-30 bg-primary absolute bottom-0 left-0 z-1 text-sm text-white flex items-end justify-center pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out">
-          Click card to view details
-        </div>
-        <div className="flex flex-col flex-1 py-5 px-4 transition-all duration-300 ease-out z-2 bg-foreground/2 group-hover:bg-primary translate-y-0 group-hover:-translate-y-10 group-hover:rounded-t-2xl group-hover:text-white">
+       
+        <div className="flex flex-col flex-1 px-4 pt-3 pb-1 transition-all duration-300 ease-out z-2 bg-foreground/2 translate-y-0 group-hover:-translate-y-3 group-hover:text-white after:absolute after:h-full group-hover:after:scale-y-120 after:translate-y-0  after:inset-0 after:-z-1 after:bg-primary after:rounded-t-2xl after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300">
           <h3 className="text-sm md:text-base font-semibold tracking-tight line-clamp-1">
             {product.name}
           </h3>
           <p className="mt-1 text-[8px] md:text-[12px] opacity-80 line-clamp-1">
             {product.description}
           </p>
-          <div className="mt-2 pt-5 flex flex-col gap-3">
+          <div className="mt-1 pt-5 flex flex-col gap-3">
             <p className="text-sm md:text-base font-medium ">
               BDT {product.price.toFixed(2)}
             </p>
@@ -90,7 +88,10 @@ export default function ProductCard({ product }: { product: Product }) {
                 )}
               </span>
             </button>
-          </div>
+             
+          </div><p className="w-full text-sm text-white flex items-end justify-center pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out">
+          Click card to view details
+        </p>
         </div>
       </div>
 
