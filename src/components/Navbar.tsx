@@ -44,12 +44,9 @@ function NavbarContent() {
             aria-label="Search"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
-            <Search className="w-5 h-5" />
+            <Search className={`h-5 w-5 ${isSearchOpen ? "text-primary" : "text-foreground"}`} />
           </button>
           <ThemeToggle />
-          <button className="btn-circular" aria-label="User Account">
-            <User className="w-5 h-5" />
-          </button>
           <button
             onClick={() => dispatch(openCart())}
             className="btn-circular relative"
@@ -62,6 +59,9 @@ function NavbarContent() {
               </span>
             )}
           </button>
+          <button className="btn-circular" aria-label="User Account">
+            <User className="w-5 h-5" />
+          </button>
         </div>
       </div>
 
@@ -71,11 +71,11 @@ function NavbarContent() {
       >
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-foreground/40" />
+            <Search className={`h-5 w-5 ${searchQuery.length > 0 ? "text-primary" : "text-foreground/40"}`} />
           </div>
           <input
             type="text"
-            className="block w-full pl-10 pr-10 py-3 border border-foreground/10 rounded-xl leading-5 bg-foreground/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/20 transition-colors sm:text-sm"
+            className="block w-full pl-10 pr-10 py-3 border border-foreground/10 rounded-xl leading-5 bg-foreground/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-px focus:ring-primary/20 focus:border-primary/20 transition-colors sm:text-sm"
             placeholder="Search products by name..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

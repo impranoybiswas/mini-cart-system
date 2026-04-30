@@ -1,6 +1,12 @@
 "use client";
 
-import { ShoppingBag, Trash2, ArrowRight, AlertCircle,  InfoIcon } from "lucide-react";
+import {
+  ShoppingBag,
+  Trash2,
+  ArrowRight,
+  AlertCircle,
+  InfoIcon,
+} from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { removeFromCart, closeCart } from "@/store/cartSlice";
 import Image from "next/image";
@@ -90,7 +96,7 @@ export default function Cart() {
                     {item.name}
                   </h4>
                   <p className="text-primary font-medium text-sm mt-1">
-                    ${item.price.toFixed(2)}
+                    BDT {item.price.toFixed(2)}
                   </p>
                 </div>
                 <button
@@ -108,17 +114,25 @@ export default function Cart() {
             <div className="flex items-center justify-between font-medium mb-6">
               <span className="text-foreground/70">Subtotal</span>
               <span className="text-xl font-bold text-foreground">
-                ${totalPrice.toFixed(2)}
+                BDT {totalPrice.toFixed(2)}
               </span>
             </div>
 
-            <button className="w-full btn bg-primary text-white hover:opacity-90 h-12 rounded-xl flex items-center justify-center gap-2 group transition-all">
-              <span onClick={() => toast(<div className="flex gap-2">
-                <InfoIcon className="w-4 h-4" /> <p>
-                  Thanks for Shopping!!
-                  <br /> Checkout Not Implemented Yet!!
-                </p>
-                 </div>)} className="font-semibold">Checkout</span>
+            <button
+              onClick={() =>
+                toast(
+                  <div className="flex gap-2">
+                    <InfoIcon className="w-4 h-4" />{" "}
+                    <p>
+                      Thanks for Shopping!!
+                      <br /> Checkout Not Implemented Yet!!
+                    </p>
+                  </div>,
+                )
+              }
+              className="w-full btn bg-primary text-white hover:opacity-90 h-12 rounded-xl flex items-center justify-center gap-2 group transition-all"
+            >
+              <span className="font-semibold">Checkout</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

@@ -23,7 +23,7 @@ export default function Footer() {
         </nav>
 
         <div className="text-xs font-medium text-foreground/40 text-center md:text-right">
-          &copy; {new Date().getFullYear()} LUXE Professional E-commerce. All
+          &copy; {new Date().getFullYear()} Professional E-commerce. All
           rights reserved.
         </div>
       </div>
