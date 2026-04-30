@@ -64,7 +64,7 @@ export default function Cart() {
           <h3 className="text-foreground font-medium mb-1">
             Your cart is empty
           </h3>
-          <p className="text-sm text-foreground/50 max-w-[200px] mb-8">
+          <p className="text-sm text-foreground/50 max-w-50 mb-8">
             Looks like you haven&apos;t added anything to your cart yet.
           </p>
           <button
@@ -89,6 +89,8 @@ export default function Cart() {
                     className="w-full h-full object-cover"
                     width={64}
                     height={64}
+                    loading="eager"
+                    priority
                   />
                 </div>
                 <div className="flex flex-col flex-1 py-0.5 min-w-0">
@@ -152,7 +154,7 @@ export default function Cart() {
           onClick={() => setItemToDelete(null)}
         />
         <div
-          className={`bg-background border border-foreground/10 p-6 rounded-2xl shadow-2xl max-w-[300px] w-full relative z-10 flex flex-col items-center text-center transition-all duration-300 ${
+          className={`bg-background border border-foreground/10 p-6 rounded-2xl shadow-2xl max-w-50 w-full relative z-10 flex flex-col items-center text-center transition-all duration-300 ${
             itemToDelete ? "scale-100 translate-y-0" : "scale-95 translate-y-4"
           }`}
         >

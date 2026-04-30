@@ -79,11 +79,12 @@ export default function ProductModal({
         </button>
 
         {/* Image Section */}
-        <div className="w-full md:w-1/2 aspect-square md:aspect-auto bg-foreground/5 relative shrink-0 min-h-[300px]">
+        <div className="w-full md:w-1/2 aspect-square md:aspect-auto bg-foreground/5 relative shrink-0 min-h-75">
           <Image
             src={product.image}
             alt={product.name}
-            fill
+            height={300}
+            width={300}
             className={`w-full h-full object-cover ${isOutOfStock ? "grayscale opacity-70" : ""}`}
           />
           {isOutOfStock && (
@@ -103,6 +104,10 @@ export default function ProductModal({
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-foreground mb-4 leading-tight">
             {product.name}
           </h2>
+          <p className="text-sm text-foreground/80 mb-6 flex items-center gap-4">
+            <span>SKU: {product.id}</span>
+            <span>Quantity: {product.quantity}</span>
+          </p>
           <p className="text-2xl sm:text-3xl font-bold text-foreground/90 mb-8 font-mono">
             BDT{" "}
             {product.price.toLocaleString(undefined, {

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Provider } from "react-redux";
-import { store } from "@/store";
+import { makeStore, AppStore } from "@/store";
 import { hydrateCart } from "@/store/cartSlice";
 
 export default function StoreProvider({
@@ -10,6 +10,8 @@ export default function StoreProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [store] = useState<AppStore>(() => makeStore());
+  const [hydrated, setHydrated] = useState(false);
   const initialized = useRef(false);
 
   useEffect(() => {
@@ -27,14 +29,20 @@ export default function StoreProvider({
         store.dispatch(hydrateCart([]));
       }
 
-      store.subscribe(() => {
+      setHydrated(true); 
+
+      const unsubscribe = store.subscribe(() => {
         localStorage.setItem(
           "mini-cart-data",
           JSON.stringify(store.getState().cart.items),
         );
       });
+      return () => unsubscribe();
     }
-  }, []);
+  }, [store]);
+
+
+  if (!hydrated) return null;
 
   return <Provider store={store}>{children}</Provider>;
 }

@@ -18,6 +18,9 @@ function NavbarContent() {
   const [isSearchOpen, setIsSearchOpen] = useState(!!initialQuery);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
+
+
+
   useEffect(() => {
     const handler = setTimeout(() => {
       const currentQ = searchParams.get("q") || "";
@@ -53,7 +56,7 @@ function NavbarContent() {
             aria-label="Open Cart"
           >
             <ShoppingCart className="w-5 h-5" />
-            {isHydrated && items.length > 0 && (
+            { isHydrated && items.length > 0 && (
               <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm ring-2 ring-background">
                 {items.length}
               </span>
