@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { productsTracker } from "@/data/products";
 import ProductCard from "./ProductCard";
+import ProductCardSkeleton from "./ProductCardSkeleton";
+import { useAppSelector } from "@/store/hooks";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import SidebarFilter from "./SidebarFilter";
 
@@ -18,6 +20,8 @@ export default function ProductList() {
   const [stockFilter, setStockFilter] = useState<
     "all" | "inStock" | "outOfStock"
   >("all");
+
+  const isHydrated = useAppSelector((state) => state.cart.isHydrated);
 
   // collect all unique categories
   const categories = useMemo(() => {
@@ -35,7 +39,6 @@ export default function ProductList() {
     maxPossiblePrice,
   ]);
 
-  // Filter and Sort purely on client side
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...productsTracker];
 
@@ -116,15 +119,24 @@ export default function ProductList() {
 
       {/* Main product area */}
       <div className="flex-1 min-w-0 flex flex-col">
-        {/* Dynamic Header & Sort */}
+        {/* Header & Sort */}
         <header className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 pb-6 border-b border-foreground/5">
           <div className="max-w-2xl">
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-2 capitalize">
-              {getSectionTitle()}
-            </h1>
-            <p className="text-foreground/60 text-base md:text-lg">
-              {getSectionDescription()}
-            </p>
+            {isHydrated ? (
+              <>
+                <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-2 capitalize">
+                  {getSectionTitle()}
+                </h1>
+                <p className="text-foreground/60 text-base md:text-lg">
+                  {getSectionDescription()}
+                </p>
+              </>
+            ) : (
+              <div className="space-y-3">
+                <div className="h-10 w-48 bg-foreground/10 rounded-xl animate-pulse" />
+                <div className="h-5 w-80 bg-foreground/10 rounded-lg animate-pulse" />
+              </div>
+            )}
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -164,14 +176,22 @@ export default function ProductList() {
           </div>
         </header>
 
-        {/* Product Grid */}
-        {currentProducts.length > 0 ? (
+        {!isHydrated ? (
+          // ── Skeleton Grid ──────────────────────────────────
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr mb-12">
+            {Array.from({ length: PRODUCTS_PER_PAGE }).map((_, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : currentProducts.length > 0 ? (
+          // ── Real Product Grid ───────────────────────────────
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 auto-rows-fr mb-12">
             {currentProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
+          // ── Empty State ─────────────────────────────────────
           <div className="flex-1 flex flex-col items-center justify-center py-24 text-center">
             <h3 className="text-xl font-bold text-foreground mb-2">
               No products found
@@ -194,7 +214,7 @@ export default function ProductList() {
         )}
 
         {/* Pagination */}
-        {totalPages > 1 && (
+        {isHydrated && totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-auto pt-4 border-t border-foreground/5">
             <button
               onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
@@ -207,7 +227,6 @@ export default function ProductList() {
 
             <div className="flex items-center gap-2">
               {Array.from({ length: totalPages }).map((_, i) => {
-                // simple pagination capping for UI cleanlyness if lots of pages
                 if (
                   totalPages > 5 &&
                   i !== 0 &&
