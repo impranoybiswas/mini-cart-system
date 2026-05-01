@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { openCart } from "@/store/cartSlice";
 import ThemeToggle from "./ThemeToggle";
 import SiteTitle from "./SiteTitle";
+import toast from "react-hot-toast";
 
 function NavbarContent() {
   const dispatch = useAppDispatch();
@@ -17,9 +18,6 @@ function NavbarContent() {
 
   const [isSearchOpen, setIsSearchOpen] = useState(!!initialQuery);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
-
-
-
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -37,6 +35,15 @@ function NavbarContent() {
     return () => clearTimeout(handler);
   }, [searchQuery, router, searchParams]);
 
+  const handleAuth = () => {
+    toast("Authentication not implemented yet!!", {
+      icon: <User className="w-4 h-4 text-primary" />,
+      style: {
+        color: "var(--color-primary)",
+      },
+    });
+  };
+
   return (
     <nav className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur-xl border-b border-foreground/5 flex flex-col">
       <div className="max-w-350 w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -47,7 +54,9 @@ function NavbarContent() {
             aria-label="Search"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           >
-            <Search className={`h-5 w-5 ${isSearchOpen ? "text-primary" : "text-foreground"}`} />
+            <Search
+              className={`h-5 w-5 ${isSearchOpen ? "text-primary" : "text-foreground"}`}
+            />
           </button>
           <ThemeToggle />
           <button
@@ -56,13 +65,13 @@ function NavbarContent() {
             aria-label="Open Cart"
           >
             <ShoppingCart className="w-5 h-5" />
-            { isHydrated && items.length > 0 && (
+            {isHydrated && items.length > 0 && (
               <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm ring-2 ring-background">
                 {items.length}
               </span>
             )}
           </button>
-          <button className="btn-circular" aria-label="User Account">
+          <button onClick={handleAuth} className="btn-circular" aria-label="User Account">
             <User className="w-5 h-5" />
           </button>
         </div>
@@ -74,7 +83,9 @@ function NavbarContent() {
       >
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className={`h-5 w-5 ${searchQuery.length > 0 ? "text-primary" : "text-foreground/40"}`} />
+            <Search
+              className={`h-5 w-5 ${searchQuery.length > 0 ? "text-primary" : "text-foreground/40"}`}
+            />
           </div>
           <input
             type="text"

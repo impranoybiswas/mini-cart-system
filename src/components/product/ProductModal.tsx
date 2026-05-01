@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Product } from "@/types";
 import { X, ShoppingCart, Check } from "lucide-react";
 import Image from "next/image";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 interface ProductModalProps {
   product: Product;
@@ -24,24 +25,16 @@ export default function ProductModal({
 }: ProductModalProps) {
   const [showModal, setShowModal] = useState(false);
 
-  // Trigger animations and scroll lock
+  // Scrol lock from lib
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
-      // Small delay to allow the DOM to render before triggering the CSS transition
+      lockScroll();
       const timer = setTimeout(() => setShowModal(true), 10);
       return () => clearTimeout(timer);
     } else {
-      document.body.style.overflow = "unset";
+      unlockScroll();
     }
   }, [isOpen]);
-
-  // Handle cleanup on unmount
-  useEffect(() => {
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, []);
 
   if (!isOpen) return null;
 
@@ -86,6 +79,7 @@ export default function ProductModal({
             height={300}
             width={300}
             className={`w-full h-full object-cover ${isOutOfStock ? "grayscale opacity-70" : ""}`}
+        
           />
           {isOutOfStock && (
             <div className="absolute top-6 left-6 bg-red-500/90 text-white px-4 py-2 text-xs sm:text-sm font-bold tracking-widest uppercase rounded-full backdrop-blur-sm shadow-md border border-red-400/20">

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import StoreProvider from "@/providers/StoreProvider";
-import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
+import Navbar from "@/components/shared/Navbar";
+import CartDrawer from "@/components/cart/CartDrawer";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/providers/ThemeProvider";
+import Footer from "@/components/shared/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,6 @@ export const metadata: Metadata = {
     "redux toolkit",
     "nextjs 14",
     "react",
-    "reactjs",
     "react-redux",
     "react-redux-toolkit",
     "react-redux-toolkit-nextjs",
@@ -40,8 +40,6 @@ export const metadata: Metadata = {
     "react-redux-toolkit-nextjs-14-crud-cart-system",
   ],
 };
-
-import Footer from "@/components/Footer";
 
 export default function RootLayout({
   children,
@@ -66,7 +64,6 @@ export default function RootLayout({
               toastOptions={{
                 style: {
                   background: "var(--background)",
-                  color: "var(--foreground)",
                 },
               }}
             />

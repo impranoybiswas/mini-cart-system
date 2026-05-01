@@ -11,7 +11,6 @@ export default function StoreProvider({
   children: React.ReactNode;
 }) {
   const [store] = useState<AppStore>(() => makeStore());
-  const [hydrated, setHydrated] = useState(false);
   const initialized = useRef(false);
 
   useEffect(() => {
@@ -20,16 +19,13 @@ export default function StoreProvider({
       const stored = localStorage.getItem("mini-cart-data");
       if (stored) {
         try {
-          store.dispatch(hydrateCart(JSON.parse(stored)));
-        } catch (e: unknown) {
-          console.error(e);
+          store.dispatch(hydrateCart(stored ? JSON.parse(stored) : []));
+        } catch {
           store.dispatch(hydrateCart([]));
         }
       } else {
         store.dispatch(hydrateCart([]));
       }
-
-      setHydrated(true); 
 
       const unsubscribe = store.subscribe(() => {
         localStorage.setItem(
@@ -40,9 +36,6 @@ export default function StoreProvider({
       return () => unsubscribe();
     }
   }, [store]);
-
-
-  if (!hydrated) return null;
 
   return <Provider store={store}>{children}</Provider>;
 }

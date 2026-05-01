@@ -5,17 +5,13 @@ import { Product } from "@/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToCart } from "@/store/cartSlice";
 import toast from "react-hot-toast";
-import { useState} from "react";  // useEffect add
+import { useState } from "react";
 import ProductModal from "./ProductModal";
 import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   const dispatch = useAppDispatch();
   const { items, isHydrated } = useAppSelector((state) => state.cart);
-
-
-
-
 
   const isInCart = isHydrated && items.some((item) => item.id === product.id);
   const isOutOfStock = product.quantity === 0;
@@ -27,7 +23,10 @@ export default function ProductCard({ product }: { product: Product }) {
     }
     dispatch(addToCart(product));
     toast.success("Added to cart", {
-      icon: <ShoppingCartIcon className="w-4 h-4 text-green-600" />,
+      icon: <ShoppingCartIcon className="w-4 h-4 text-green-700" />,
+      style: {
+        color: "var(--color-green-700)",
+      },
     });
   };
 
@@ -43,8 +42,6 @@ export default function ProductCard({ product }: { product: Product }) {
             alt={product.name}
             height={200}
             width={200}
-            loading="eager"
-                    priority
             className={`h-full w-full object-cover object-center transition-transform duration-500 will-change-transform ${isOutOfStock ? "grayscale opacity-70" : "group-hover:scale-105"}`}
           />
           {isOutOfStock && (
@@ -54,7 +51,7 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        <div className="flex flex-col flex-1 px-4 pt-3 pb-1 transition-all duration-300 ease-out z-2 bg-foreground/2 translate-y-0 group-hover:-translate-y-3 group-hover:text-white after:absolute after:h-full group-hover:after:scale-y-120 after:translate-y-0  after:inset-0 after:-z-1 after:bg-primary after:rounded-t-2xl after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300">
+        <div className="flex flex-col flex-1 px-4 pt-3 pb-1 transition-all duration-300 ease-out z-2 bg-foreground/2 translate-y-0 group-hover:-translate-y-4 group-hover:text-white after:absolute after:h-full group-hover:after:scale-y-120 after:translate-y-0  after:inset-0 after:-z-1 after:bg-primary after:rounded-t-2xl after:opacity-0 group-hover:after:opacity-100 after:transition-all after:duration-300">
           <h3 className="text-sm md:text-base font-semibold tracking-tight line-clamp-1">
             {product.name}
           </h3>

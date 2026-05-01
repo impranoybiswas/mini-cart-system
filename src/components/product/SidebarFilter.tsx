@@ -59,7 +59,7 @@ export default function SidebarFilter({
       </section>
 
       {/* Price Range */}
-      <section className="hidden lg:block">
+      <section className="">
         <h3 className="text-base font-bold text-foreground mb-4">
           Price Range
         </h3>

@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ShoppingBag,
-  Trash2,
-  ArrowRight,
-  AlertCircle,
-  InfoIcon,
-} from "lucide-react";
+import { ShoppingBag, Trash2, ArrowRight, AlertCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { removeFromCart, closeCart } from "@/store/cartSlice";
 import Image from "next/image";
@@ -31,11 +25,23 @@ export default function Cart() {
   const confirmDelete = () => {
     if (itemToDelete) {
       dispatch(removeFromCart(itemToDelete));
-      toast.success("Item removed from cart", {
+      toast("Item removed from cart", {
         icon: <Trash2 className="w-4 h-4 text-red-600" />,
+        style: {
+          color: "var(--color-red-600)",
+        },
       });
       setItemToDelete(null);
     }
+  };
+
+  const handleCheckout = () => {
+    toast("Checkout not implemented yet!!", {
+      icon: <AlertCircle className="w-4 h-4 text-primary" />,
+      style: {
+        color: "var(--color-primary)",
+      },
+    });
   };
 
   return (
@@ -89,8 +95,6 @@ export default function Cart() {
                     className="w-full h-full object-cover"
                     width={64}
                     height={64}
-                    loading="eager"
-                    priority
                   />
                 </div>
                 <div className="flex flex-col flex-1 py-0.5 min-w-0">
@@ -121,17 +125,7 @@ export default function Cart() {
             </div>
 
             <button
-              onClick={() =>
-                toast(
-                  <div className="flex gap-2">
-                    <InfoIcon className="w-4 h-4" />{" "}
-                    <p>
-                      Thanks for Shopping!!
-                      <br /> Checkout Not Implemented Yet!!
-                    </p>
-                  </div>,
-                )
-              }
+              onClick={handleCheckout}
               className="w-full btn bg-primary text-white hover:opacity-90 h-12 rounded-xl flex items-center justify-center gap-2 group transition-all"
             >
               <span className="font-semibold">Checkout</span>

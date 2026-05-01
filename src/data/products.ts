@@ -5,8 +5,7 @@ export const productsTracker: Product[] = [
     id: "M001",
     name: "Samsung Galaxy S26 Ultra",
     price: 179999,
-    image:
-      "/images/Samsung_Galaxy_S26_Ultra_photo_202604301450.jpeg",
+    image: "/images/Samsung_Galaxy_S26_Ultra_photo_202604301450.jpeg",
     description:
       "The ultimate flagship featuring the Snapdragon 8 Elite Gen 5.",
     category: "mobiles",
@@ -16,8 +15,7 @@ export const productsTracker: Product[] = [
     id: "M002",
     name: "iPhone 17 Pro Max",
     price: 217499,
-    image:
-      "/images/iPhone_17_Pro_Max_product_202604301450.jpeg",
+    image: "/images/iPhone_17_Pro_Max_product_202604301450.jpeg",
     description: "Apple's most powerful device with A19 chip.",
     category: "mobiles",
     quantity: 10,
@@ -26,13 +24,11 @@ export const productsTracker: Product[] = [
     id: "M003",
     name: "Xiaomi Redmi Note 15 Pro+",
     price: 46999,
-    image:
-      "/images/Xiaomi_Redmi_Note_15_Pro+_202604301450.jpeg",
+    image: "/images/Xiaomi_Redmi_Note_15_Pro+_202604301450.jpeg",
     description: "Premium mid-range with 200MP camera.",
     category: "mobiles",
     quantity: 25,
   },
-
 
   {
     id: "M007",
